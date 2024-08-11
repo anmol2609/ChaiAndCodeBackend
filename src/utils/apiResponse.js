@@ -1,5 +1,5 @@
 class ApiResponse extends Error {
-    constructor(statusCode,data,message = "success", errors = []) {
+    constructor(statusCode,data,message = "success", errors = [],stack="") {
         this.statusCode = statusCode;
         this.message = message;
         this.success = statusCode < 400;
