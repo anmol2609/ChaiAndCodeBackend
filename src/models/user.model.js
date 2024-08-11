@@ -49,7 +49,8 @@ const userSchema = new Schema({
 //userSchema.pre("save",()=>{}) use to avoid arrow function because it doesn have this reference in the arrow function
 userSchema.pre("save",async function (next) {
     if(!this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password, 8);
+    this.password = await bcrypt.hash(this.password, 8);
+    next();
 }) 
 userSchema.methods.isPasswordCorrect = async function (password) {
    return await bcrypt.compare(password, this.password)
